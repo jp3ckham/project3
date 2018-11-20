@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% if a %}
+            <h3 class="title">Asset ID: {{a.asset_id}}</h1>
+            <p>description: {{ a.description }}</p>
+            <p>Part Number: {{ a.part_number }}</p>
+            <p>Maintenance Notes: {{ a.maint_notes }}</p>
+
+{% else %}
+    <p>No assets are available.</p>
+{% endif %}
+{% endblock %}

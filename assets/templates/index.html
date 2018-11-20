@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title is-1">All Tables</h1>
+<form id="searchform" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+    {% csrf_token %}
+    
+    <input class="input is-success" id="searchbox" name="q" type="text" placeholder="Search">
+    <button class="button is-link" type="submit">Submit
+      </button>
+  </form>
+
+<div class="tile is-parent">
+  <article class="tile is-child notification is-primary">
+    <h2 class="title">Assets</h2>
+    {% if assets %}
+    <table class="table is-fullwidth">
+      <th>Asset ID: </th>
+      <th>Description</th>
+      <th>Actions</th>
+      {% for a in assets %}
+      <tr>
+        <td>{{a.asset_id}}</td>
+        <td>{{ a.description }}</td>
+        <td><div class="level"><a class="button is-primary" href="{%  url 'detail' a.asset_id %}">View </a><a class="button is-warning" href="{%  url 'edit' a.asset_id %}">Edit</a><a class="button is-danger" href="{%  url 'delete' a.asset_id %}">Delete</a></div></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No assets are available.</p>
+    {% endif %}
+
+  </article>
+</div>
+<div class="tile is-parent">
+  <article class="tile is-child notification is-info">
+    <h2 class="title">Manufacturers</h2>
+    {% if manufacturers %}
+    <table class="table is-fullwidth">
+      <th>Name</th>
+      <th>Location</th>
+      {% for a in manufacturers %}
+      <tr>
+        <td>{{a.name}}</td>
+        <td>{{a.location}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No manufacturers are available.</p>
+    {% endif %}
+  </article>
+</div>
+
+
+<div class="tile is-parent">
+  <article class="tile is-child notification is-danger">
+    <h2 class="title">Offices</h2>
+    {% if offices %}
+    <table class="table is-fullwidth">
+      <th>Office ID</th>
+      <th>Location</th>
+      {% for a in offices %}
+      <tr>
+        <td>{{a.office_id}}</td>
+        <td>{{a.office_location}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No offices are available.</p>
+    {% endif %}
+  </article>
+</div>
+
+<div class="tile is-parent">
+  <article class="tile is-child notification is-success">
+    <div class="content">
+      <h2 class="title">Organizations</h2>
+      {% if organizations %}
+      <table class="table is-fullwidth">
+          <th>Name</th>
+        {% for a in organizations %}
+        <td>
+          <h3 class="subtitle is-4">{{a.name}}</h1>
+          </td>
+        {% endfor %}
+    </table>
+      {% else %}
+      <p>No organizations are available.</p>
+      {% endif %}
+
+     
+    </div>
+  </article>
+</div>
+{% endblock %}

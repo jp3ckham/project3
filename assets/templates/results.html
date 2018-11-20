@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title">results</h1>
+{% if results %}
+<ul>
+{% for a in results %}
+<li>Part number: {{a.part_number}}<p>description: {{a.description}}</p></li>
+{% endfor %}
+</ul>
+{% else %}
+    <p>No assets are were found with this term.</p>
+    {% endif %}
+{% endblock %}
